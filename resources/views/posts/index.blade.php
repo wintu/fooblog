@@ -8,7 +8,7 @@
       </div>
       <div class="col-sm-8">
         <h1><a href="/post/{{ $post->id }}">{{ $post->title }}</a></h1>
-        <p class="post-body">{{ mb_strimwidth($post->body, 0, 30, '...') }}</p>
+        <p class="post-body">{{ mb_strimwidth($post->body, 0, 200, '...') }}</p>
       </div>
     </div>
     <hr>
