@@ -26,18 +26,22 @@ class AdminController extends Controller
 
     public function create() {
       $file = Request::file('upload');
-      $fileName = $file->getClientOriginalName();
-      $allowExt = ['jpeg', 'png', 'jpg'];
-      if (!in_array(File::extension($fileName), $allowExt)){
-        Session::flash('flash_message', 'アップロードされたファイルが不正です。');
-        return back();
+      if (!empty($file)) {
+        $fileName = $file->getClientOriginalName();
+        $allowExt = ['jpeg', 'png', 'jpg'];
+        if (!in_array(File::extension($fileName), $allowExt)){
+          Session::flash('flash_message', 'アップロードされたファイルが不正です。');
+          return back();
+        }
+        $file->move('media', $fileName);
+      } else {
+        $fileName = 'no_image';
       }
       $post = new Posts();
       $post->title = Request::input('title');
       $post->body = Request::input('body');
       $post->img_name = $fileName;
       $post->save();
-      $file->move('media', $fileName);
       return redirect('/admin');
     }
 

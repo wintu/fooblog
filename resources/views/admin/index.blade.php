@@ -3,6 +3,7 @@
 
 <h1>投稿記事一覧</h1>
 <div class="text-right">
+  <button class="btn btn-danger" onclick="location='/auth/logout'">ログアウト</button>
   <button class="btn btn-primary" onclick="location='/admin/create_post'">新規記事作成</button>
 </div>
 <table class="table">
